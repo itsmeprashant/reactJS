@@ -19,3 +19,4 @@ export default class CreateTodo extends React.Component {
 		this.refs.createInput.focus();
 	}
 }
+
