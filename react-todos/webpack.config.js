@@ -36,3 +36,5 @@ module.exports = {
         new webpack.NoEmitOnErrorsPlugin()
     ]
 };
+
+
