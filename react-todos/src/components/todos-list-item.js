@@ -11,16 +11,39 @@ export default class TodosListItem extends React.Component {
 	}
 
 	renderTaskSection() {
-		return (
-			<td>{ this.props.task }</td>
-		);
+
+		const { task, isCompleted } = this.props;
+
+		const taskStyle = {
+		    color: isCompleted ? 'green' : 'red',
+            cursor: 'pointer'
+        };
+
+		if ( this.state.isEditing ) {
+            return (
+                <td>
+                    <form onSubmit={ this.onSaveClick.bind( this ) }>
+                        <input type='text' ref='editInput' defaultValue={task} />
+                    </form>
+                </td>
+            );
+        } else {
+            return (
+                <td style={ taskStyle }
+                    onClick={ this.onListItemClick.bind( this ) }
+                >
+                    { task }
+                </td>
+            );
+        }
+
 	}
 
 	renderActionSection() {
 		if ( this.state.isEditing ) {
 			return (
 				<td>
-					<button>Save</button>
+					<button onClick={ this.onSaveClick.bind( this ) }>Save</button>
 					<button onClick={ this.onCancelClick.bind( this ) }>Cancel</button>
 				</td>
 			);
@@ -29,7 +52,7 @@ export default class TodosListItem extends React.Component {
 		return (
 			<td>
 				<button onClick={ this.onEditClick.bind( this ) }>Edit</button>
-				<button>Delete</button>		
+				<button onClick={ this.onDeleteClick.bind( this ) }>Delete</button>
 			</td>
 		);
 	}
@@ -50,4 +73,22 @@ export default class TodosListItem extends React.Component {
 	onCancelClick( event ) {
 		this.setState( { isEditing: false } );
 	}
+
+    onListItemClick( event ) {
+	    this.props.toggleTask( this.props.task );
+    }
+
+	onSaveClick( event ) {
+	    event.preventDefault();
+
+	    const oldTask = this.props.task;
+	    const newTask = this.refs.editInput.value;
+
+	    this.props.saveTask( oldTask, newTask );
+	    this.setState( { isEditing: false } );
+    }
+
+    onDeleteClick( event ) {
+        this.props.deleteTask( this.props.task );
+    }
 }
