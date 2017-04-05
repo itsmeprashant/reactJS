@@ -4,6 +4,8 @@ import App from './App';
 
 console.log( 'working' );
 ReactDOM.render(
-    <App />,
+    <App
+        cat={5}
+    />,
     document.querySelector( '#app' )
 );
