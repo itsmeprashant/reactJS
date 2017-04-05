@@ -1,9 +1,28 @@
 import React from 'react';
 
 class App extends React.Component {
+
+    constructor ( props ) {
+        super( props );
+
+        this.state = {
+            txt: 'This is the state text'
+        };
+    }
+
+    onInputChange( event ) {
+        this.setState( { txt: event.target.value } )
+    }
+
     render() {
-        let txt = this.props.txt;
-        return <h1>Hello world { txt }</h1>
+        return (
+            <div>
+                <input type="text"
+                       onChange={ this.onInputChange.bind( this ) }
+                />
+                <h1>{ this.state.txt }</h1>
+            </div>
+        );
     };
 }
 
