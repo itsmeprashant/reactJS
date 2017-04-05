@@ -34,9 +34,19 @@ class App extends React.Component {
 }
 
 // defines the expected PropTypes for the component to be passed to it
+// App.propTypes = {
+//     txt: React.PropTypes.string,
+//     cat: React.PropTypes.number.isRequired
+// };
 App.propTypes = {
-    txt: React.PropTypes.string,
-    cat: React.PropTypes.number.isRequired
+    someProperty( props, propName, component ) {
+        if ( !( propName in props ) ) {
+            return new Error( `missing ${ propName }` );
+        }
+        if ( props[ propName ].length < 6 ) {
+            return new Error( `${ propName } is too short` );
+        }
+    }
 };
 
 // the default properties for the component

@@ -6,6 +6,7 @@ console.log( 'working' );
 ReactDOM.render(
     <App
         cat={5}
+        someProperty="prop123"
     />,
     document.querySelector( '#app' )
 );
