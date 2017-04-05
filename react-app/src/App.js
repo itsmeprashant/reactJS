@@ -1,5 +1,6 @@
 import React from 'react';
 import InputComponent from './components/input';
+import { Button, Heart } from './components/mixed-components';
 
 class App extends React.Component {
 
@@ -25,6 +26,8 @@ class App extends React.Component {
                 <InputComponent
                     onInputChange={ this.onInputChange.bind( this ) }
                 />
+                <br /><br />
+                <Button>I <Heart /> React</Button>
             </div>
         );
     };
