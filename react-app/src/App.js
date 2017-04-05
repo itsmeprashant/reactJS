@@ -1,4 +1,5 @@
 import React from 'react';
+import InputComponent from './components/input';
 
 class App extends React.Component {
 
@@ -17,10 +18,13 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <input type="text"
-                       onChange={ this.onInputChange.bind( this ) }
-                />
                 <h1>{ this.state.txt }</h1>
+                <InputComponent
+                    onInputChange={ this.onInputChange.bind( this ) }
+                />
+                <InputComponent
+                    onInputChange={ this.onInputChange.bind( this ) }
+                />
             </div>
         );
     };
