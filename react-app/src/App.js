@@ -10,10 +10,16 @@ class App extends React.Component {
         this.state = {
             txt: 'This is the state text'
         };
+
+        this.onEventOccurred = this.onEventOccurred.bind( this );
     }
 
     onInputChange( event ) {
         this.setState( { txt: event.target.value } )
+    }
+
+    onEventOccurred( event ) {
+        this.setState( { txt: event.type } );
     }
 
     render() {
@@ -25,6 +31,18 @@ class App extends React.Component {
                 />
                 <InputComponent
                     onInputChange={ this.onInputChange.bind( this ) }
+                />
+                <br /><br />
+                <textarea
+                    cols="20"
+                    rows="5"
+                    onDoubleClick={ this.onEventOccurred }
+                    onBlur={ this.onEventOccurred }
+                    onFocus={ this.onEventOccurred }
+                    onKeyPress={ this.onEventOccurred }
+                    onTouchStart={ this.onEventOccurred }
+                    onTouchMove={ this.onEventOccurred }
+                    onTouchEnd={ this.onEventOccurred }
                 />
                 <br /><br />
                 <Button>I <Heart /> React</Button>
