@@ -8,10 +8,12 @@ class App extends React.Component {
         super( props );
 
         this.state = {
-            txt: 'This is the state text'
+            txt: 'This is the state text',
+            val: 0
         };
 
         this.onEventOccurred = this.onEventOccurred.bind( this );
+        this.update = this.update.bind( this );
     }
 
     onInputChange( event ) {
@@ -22,7 +24,18 @@ class App extends React.Component {
         this.setState( { txt: event.type } );
     }
 
+    update() {
+        this.setState( {
+            val: this.state.val + 1
+        } );
+    }
+
+    componentWillMount() {
+        console.log( 'componentWillMount' );
+    }
+
     render() {
+        console.log( 'render' );
         return (
             <div>
                 <h1>{ this.state.txt }</h1>
@@ -46,9 +59,21 @@ class App extends React.Component {
                 />
                 <br /><br />
                 <Button>I <Heart /> React</Button>
+                <br /><br />
+                <button onClick={ this.update }>
+                    { this.state.val }
+                </button>
             </div>
         );
-    };
+    }
+
+    componentDidMount() {
+        console.log( 'componentDidMount' );
+    }
+
+    componentWillUnMount() {
+        console.log( 'componentWillUnMount' );
+    }
 }
 
 // defines the expected PropTypes for the component to be passed to it
