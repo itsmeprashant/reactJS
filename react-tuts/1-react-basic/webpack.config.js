@@ -18,6 +18,13 @@ module.exports = {
             } /*[ 'style-loader', 'css-loader', 'sass-loader' ]*/ )
         } ]
     },
+    devServer: {
+        contentBase: path.join( __dirname, 'dist' ),
+        compress: true,
+        port: 8080,
+        stats: 'errors-only'/*,
+        open: true*/
+    },
     plugins: [
         new HtmlWebpackPlugin( {
             title: 'Project Cusom',
