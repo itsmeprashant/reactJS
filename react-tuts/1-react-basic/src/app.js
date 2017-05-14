@@ -1,4 +1,5 @@
-const css = require( './app.scss' );
+// const css = require( './app.scss' );
+import css from './app.scss';
 
 console.log( 'hello from app and webpack dev guy' );
 

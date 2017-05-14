@@ -1,5 +1,6 @@
 var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 var ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+var webpack = require( 'webpack' );
 var path = require( 'path' );
 
 module.exports = {
@@ -14,11 +15,12 @@ module.exports = {
     module: {
         rules: [ {
             test: /\.scss$/,
-            use: ExtractTextPlugin.extract( {
-                fallbackLoader: 'style-loader',
-                loader: [ 'css-loader', 'sass-loader' ],
-                publicPath: '/dist'
-            } /*[ 'style-loader', 'css-loader', 'sass-loader' ]*/ )
+            use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+            // ExtractTextPlugin.extract( {
+            //     fallbackLoader: 'style-loader',
+            //     loader: [ 'css-loader', 'sass-loader' ],
+            //     publicPath: '/dist'
+            // } /*[ 'style-loader', 'css-loader', 'sass-loader' ]*/ )
         }, {
             test: /\.js$/,
             exclude: /node_modules/,
@@ -29,6 +31,7 @@ module.exports = {
         contentBase: path.join( __dirname, 'dist' ),
         compress: true,
         port: 8080,
+        hot: true,
         stats: 'errors-only'/*,
         open: true*/
     },
@@ -54,8 +57,10 @@ module.exports = {
         } ),
         new ExtractTextPlugin( {
             filename: 'app.css',
-            disable: false,
+            disable: true,
             allChunks: true
-        } )
+        } ),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin()
     ]
 }
