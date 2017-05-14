@@ -1,3 +1,11 @@
 const css = require( './app.scss' );
 
 console.log( 'hello from app and webpack dev guy' );
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render( 
+    <h1>Hello World A!</h1>,
+    document.getElementById( 'root' )
+ );
