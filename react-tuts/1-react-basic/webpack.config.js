@@ -17,9 +17,9 @@ var cssProd = ExtractTextPlugin.extract( {
 var prodPlugins = [
     new HtmlWebpackPlugin( {
         title: 'Project Cusom',
-        // minify: {
-        //     collapseWhitespace: true
-        // },
+        minify: {
+            collapseWhitespace: true
+        },
         hash: true,
         excludeChunks: [ 'contact' ],
         template: './src/index.ejs'
