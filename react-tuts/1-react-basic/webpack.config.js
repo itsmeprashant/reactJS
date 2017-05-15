@@ -61,29 +61,35 @@ var devPlugins = [
         chunks: [ 'contact' ],
         template: './src/contact.ejs'
     } ),
-    new ExtractTextPlugin( {
-        filename: 'app.css',
-        disable: true,
-        allChunks: true
-    } ),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin()
 ];
 
 var cssConfig = isProd ? cssProd : cssDev;
 
+// define the entry based on environment
+// don't include hot module stuff for the production environment
+var entry = isProd
+    ?   {
+            app: "./src/app.js",
+            contact: "./src/contact.js"
+        }
+    :   {
+            app: [ 'react-hot-loader/patch', "./src/app.js",
+                'webpack/hot/only-dev-server',
+                'webpack-dev-server/client?http://localhost:8080' ],
+            contact: "./src/contact.js"
+        };
+
 module.exports = {
-    entry: {
-        app: [ 'react-hot-loader/patch', "./src/app.js", 'webpack/hot/only-dev-server', 'webpack-dev-server/client?http://localhost:8080' ],
-        contact: "./src/contact.js"
-    },
+    entry: entry,
     output: {
         path: path.join( __dirname, '/dist' ),
         filename: "[name].bundle.js",
-        publicPath: '/',
-        sourceMapFilename: '[name].map'
+        publicPath: '/'
+        // sourceMapFilename: '[name].map'
     },
-    devtool: 'inline-source-map',
+    // devtool: 'inline-source-map',
     module: {
         rules: [ 
             {
