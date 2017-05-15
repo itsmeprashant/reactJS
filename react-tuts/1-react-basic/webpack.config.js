@@ -74,15 +74,16 @@ var cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
     entry: {
-        app: "./src/app.js",
+        app: [ 'react-hot-loader/patch', "./src/app.js", 'webpack/hot/only-dev-server', 'webpack-dev-server/client?http://localhost:8080' ],
         contact: "./src/contact.js"
     },
     output: {
         path: path.join( __dirname, '/dist' ),
         filename: "[name].bundle.js",
-        // publicPath: publicPath,
+        publicPath: '/',
         sourceMapFilename: '[name].map'
     },
+    devtool: 'inline-source-map',
     module: {
         rules: [ 
             {
@@ -114,7 +115,8 @@ module.exports = {
         compress: true,
         port: 8080,
         hot: true,
-        stats: 'errors-only'
+        stats: 'errors-only',
+        publicPath: '/'
         // open: true
     },
     plugins: isProd ? prodPlugins : devPlugins
