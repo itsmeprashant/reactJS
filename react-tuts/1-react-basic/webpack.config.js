@@ -80,7 +80,7 @@ module.exports = {
     output: {
         path: path.join( __dirname, '/dist' ),
         filename: "[name].bundle.js",
-        publicPath: publicPath,
+        // publicPath: publicPath,
         sourceMapFilename: '[name].map'
     },
     module: {
@@ -114,7 +114,7 @@ module.exports = {
         compress: true,
         port: 8080,
         hot: true,
-        // stats: 'errors-only'
+        stats: 'errors-only'
         // open: true
     },
     plugins: isProd ? prodPlugins : devPlugins
