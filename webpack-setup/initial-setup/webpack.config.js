@@ -86,7 +86,7 @@ module.exports = {
     output: {
         path: path.join( __dirname, '/dist' ),
         filename: "[name].bundle.js",
-        publicPath: '/'
+        publicPath: ''
         // sourceMapFilename: '[name].map'
     },
     // devtool: 'inline-source-map',
@@ -122,7 +122,7 @@ module.exports = {
         port: 8080,
         hot: true,
         stats: 'errors-only',
-        publicPath: '/'
+        publicPath: ''
         // open: true
     },
     plugins: isProd ? prodPlugins : devPlugins
