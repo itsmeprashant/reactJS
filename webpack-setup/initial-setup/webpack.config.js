@@ -90,6 +90,7 @@ module.exports = {
         // sourceMapFilename: '[name].map'
     },
     // devtool: 'inline-source-map',
+    devtool: 'source-map',
     module: {
         rules: [ 
             {
@@ -126,4 +127,4 @@ module.exports = {
         // open: true
     },
     plugins: isProd ? prodPlugins : devPlugins
-}
+};
